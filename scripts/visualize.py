@@ -4,6 +4,8 @@ Purpose: Visualization script with improved error handling and statistics.
 """
 import os
 import csv
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def main():
     if not os.path.exists("results.csv") or os.stat("results.csv").st_size == 0:
@@ -26,8 +28,6 @@ def main():
         print("No valid results found in results.csv")
         return
 
-    import pandas as pd
-    import matplotlib.pyplot as plt
     
     df = pd.DataFrame(results)
     

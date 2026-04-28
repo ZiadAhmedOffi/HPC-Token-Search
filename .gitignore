@@ -1,0 +1,7 @@
+data.txt
+data.txt_5GB
+dist_search
+report/
+results.csv
+*.o
+obj/

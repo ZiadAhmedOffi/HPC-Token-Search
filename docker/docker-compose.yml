@@ -1,0 +1,29 @@
+# Author: Ziad Ahmed
+# Purpose: Docker Compose configuration to orchestrate the Master and Worker nodes.
+version: '3'
+
+services:
+  master:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/data
+    working_dir: /data
+    depends_on:
+      - worker
+    networks:
+      - hpc_network
+    entrypoint: ["tail", "-f", "/dev/null"]
+
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    networks:
+      - hpc_network
+    entrypoint: ["dist_search", "--worker"]
+
+networks:
+  hpc_network:
+    driver: bridge
